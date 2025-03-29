@@ -4,8 +4,10 @@ import Image from "next/image";
 import { useState, useRef } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { motion } from "framer-motion"; // Import motion for animations
+import { useRouter } from 'next/navigation';
 
 const OtpVerify = () => {
+    const router = useRouter()
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
     const inputRefs = useRef([]);
 
@@ -35,6 +37,8 @@ const OtpVerify = () => {
         const enteredOTP = otp.join("");
         console.log("Entered OTP:", enteredOTP);
         alert(`Entered OTP: ${enteredOTP}`);
+        router.push("/new-password");
+        
     };
 
     return (
