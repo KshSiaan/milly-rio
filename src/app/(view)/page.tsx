@@ -1,5 +1,8 @@
+import HomeBanner from "@/components/home-page/HomeBanner";
 import React from "react";
 
 export default function Home() {
-  return <div className="h-[calc(100dvh-64px)] w-dvw bg-primary">Home</div>;
+  return <div className=" w-dvw bg-primary">
+    <HomeBanner></HomeBanner>
+  </div>;
 }

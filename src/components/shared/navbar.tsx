@@ -9,7 +9,7 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const pathname : string = usePathname();
   const [isExploreOpen, setIsExploreOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -46,6 +46,7 @@ export default function Navbar() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
   return (
     <nav className="h-[64px] w-dvw bg-primary shadow-sm sticky flex flex-row justify-between   items-center !px-[7%]">
       <div>
@@ -70,7 +71,7 @@ export default function Navbar() {
         <nav className="hidden lg:flex">
           <ul className="flex font-medium items-center gap-8 text-[#000030]">
             <li>
-              <Link href="/" className="hover:text-gray-700">
+              <Link  href="/" className={`${pathname==="/"?" font-bold text-white ":""} `}>
                 Home
               </Link>
             </li>
@@ -87,7 +88,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: isExploreOpen ? 1 : 0, y: isExploreOpen ? 0 : -30 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className={`absolute px-3.5 cursor-pointer top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-md ${isExploreOpen ? "block" : "hidden"
+                className={`  absolute px-3.5 cursor-pointer top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-md ${isExploreOpen ? "block" : "hidden"
                   }`}
               >
                 {[
@@ -104,7 +105,7 @@ export default function Navbar() {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="p-2 hover:bg-gray-200 transition-all ease-in-out rounded-4xl"
                   >
-                    <Link href={item.href}>{item.label}</Link>
+                    <Link className="" href={item.href}>{item.label}</Link>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -148,17 +149,17 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link href="/about" className="hover:text-gray-700">
+              <Link  href="/about" className={`${pathname==="/about"?" font-bold text-white ":""} `} >
                 About
               </Link>
             </li>
             <li>
-              <Link href="/blogs" className="hover:text-gray-700">
+              <Link href="/blogs" className={`${pathname==="/blogs"?" font-bold text-white ":""} `}>
                 Blogs
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-gray-700">
+              <Link href="/contact" className={`${pathname==="/contact"?" font-bold text-white ":""} `}>
                 Contact
               </Link>
             </li>
