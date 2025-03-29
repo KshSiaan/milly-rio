@@ -1,19 +1,16 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { Button } from "../ui/button";
 import Switch from "../ui/switch";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const pathname : string = usePathname();
+  const pathname: string = usePathname();
   const [isExploreOpen, setIsExploreOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  // Refs for dropdowns
   const exploreRef = useRef(null);
   const shopRef = useRef(null);
 
@@ -48,7 +45,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="h-[64px] w-dvw bg-primary shadow-sm sticky flex flex-row justify-between   items-center !px-[7%]">
+    <nav className="h-[64px] w-dvw bg-primary shadow-sm sticky top-0 flex flex-row justify-between items-center px-[7%] z-50 relative">
       <div>
         <motion.div
           initial={{ x: -200 }}
@@ -66,12 +63,12 @@ export default function Navbar() {
           <h1 className="font-bold font-baloo text-2xl">Milly & Rio</h1>
         </motion.div>
       </div>
-      <div className=" ">
+      <div>
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex">
           <ul className="flex font-medium items-center gap-8 text-[#000030]">
             <li>
-              <Link  href="/" className={`${pathname==="/"?" font-bold text-white ":""} `}>
+              <Link href="/" className={`${pathname === "/" ? "font-bold text-white" : ""}`}>
                 Home
               </Link>
             </li>
@@ -85,11 +82,12 @@ export default function Navbar() {
                 Explore <span className="text-[12px] ml-1">▼</span>
               </button>
               <motion.ul
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: isExploreOpen ? 1 : 0, y: isExploreOpen ? 0 : -30 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className={`  absolute px-3.5 cursor-pointer top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-md ${isExploreOpen ? "block" : "hidden"
-                  }`}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: isExploreOpen ? 1 : 0, y: isExploreOpen ? 0 : -10 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className={`absolute px-3.5 cursor-pointer top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-lg z-50 ${
+                  isExploreOpen ? "block" : "hidden"
+                }`}
               >
                 {[
                   { href: "/explore1", label: "Fun Activities" },
@@ -102,10 +100,10 @@ export default function Navbar() {
                   <motion.li
                     key={index}
                     whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
                     className="p-2 hover:bg-gray-200 transition-all ease-in-out rounded-4xl"
                   >
-                    <Link className="" href={item.href}>{item.label}</Link>
+                    <Link href={item.href}>{item.label}</Link>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -120,11 +118,12 @@ export default function Navbar() {
                 Shop <span className="text-[12px] ml-1">▼</span>
               </button>
               <motion.ul
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: isShopOpen ? 1 : 0, y: isShopOpen ? 0 : -30 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className={`absolute px-3.5 top-full left-0 w-[216px] text-[#000030] rounded-2xl py-4 mt-5 bg-white shadow-md ${isShopOpen ? "block" : "hidden"
-                  }`}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: isShopOpen ? 1 : 0, y: isShopOpen ? 0 : -10 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className={`absolute px-3.5 cursor-pointer top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-lg z-50 ${
+                  isShopOpen ? "block" : "hidden"
+                }`}
               >
                 {[
                   { href: "/shop1", label: "Gift Sets" },
@@ -149,23 +148,22 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link  href="/about" className={`${pathname==="/about"?" font-bold text-white ":""} `} >
+              <Link href="/about" className={`${pathname === "/about" ? "font-bold text-white" : ""}`}>
                 About
               </Link>
             </li>
             <li>
-              <Link href="/blogs" className={`${pathname==="/blogs"?" font-bold text-white ":""} `}>
+              <Link href="/blogs" className={`${pathname === "/blogs" ? "font-bold text-white" : ""}`}>
                 Blogs
               </Link>
             </li>
             <li>
-              <Link href="/contact" className={`${pathname==="/contact"?" font-bold text-white ":""} `}>
+              <Link href="/contact" className={`${pathname === "/contact" ? "font-bold text-white" : ""}`}>
                 Contact
               </Link>
             </li>
           </ul>
         </nav>
-
       </div>
       <div className="flex flex-row justify-end items-center gap-4">
         <Switch />
