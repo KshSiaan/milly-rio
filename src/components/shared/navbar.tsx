@@ -12,29 +12,36 @@ export default function Navbar() {
   const [isExploreOpen, setIsExploreOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [activeExplore, setActiveExplore] = useState<string | null>(null);
+  const [activeShop, setActiveShop] = useState<string | null>(null);
 
   const exploreRef = useRef(null);
   const shopRef = useRef(null);
 
   const handleExploreMenuToggle = () => {
     setIsExploreOpen(!isExploreOpen);
-    setIsShopOpen(false);
+    setIsShopOpen(false);  // Close Shop menu when Explore is opened
   };
 
   const handleShopMenuToggle = () => {
     setIsShopOpen(!isShopOpen);
-    setIsExploreOpen(false);
+    setIsExploreOpen(false);  // Close Explore menu when Shop is opened
   };
 
-  const handleMenuItemClick = (href: string) => {
+  const handleExploreMenuItemClick = (href: string) => {
     setActiveExplore(href);
     setIsExploreOpen(false); // Close the dropdown
+  };
+
+  const handleShopMenuItemClick = (href: string) => {
+    setActiveShop(href);
+    setIsShopOpen(false); // Close the dropdown
   };
 
   // Reset "Explore" when navigating to Home
   useEffect(() => {
     if (pathname === "/") {
       setActiveExplore(null);
+      setActiveShop(null);  // Reset Shop state on Home page
     }
   }, [pathname]);
 
@@ -60,7 +67,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-primary">
-      <div className=" max-w-[1216px] mx-auto h-[64px] w-dvw  shadow-sm sticky top-0 flex flex-row justify-between items-center  z-50 relative  " >
+      <div className="max-w-[1216px] mx-auto h-[64px] w-dvw shadow-sm sticky top-0 flex flex-row justify-between items-center z-50 relative">
         <div>
           <motion.div
             initial={{ x: -200 }}
@@ -83,7 +90,14 @@ export default function Navbar() {
           <nav className="hidden lg:flex">
             <ul className="flex font-medium items-center gap-8 text-[#000030]">
               <li>
-                <Link href="/" onClick={() => setActiveExplore(null)} className={`${pathname === "/" ? "font-bold text-white" : ""}`}>
+                <Link
+                  href="/"
+                  onClick={() => {
+                    setActiveExplore(null);
+                    setActiveShop(null);  // Reset active states when navigating to Home
+                  }}
+                  className={`${pathname === "/" ? "font-bold text-white" : ""}`}
+                >
                   Home
                 </Link>
               </li>
@@ -91,8 +105,7 @@ export default function Navbar() {
               {/* Explore Dropdown */}
               <li ref={exploreRef} className="relative">
                 <button
-                  className={` cursor-pointer flex items-center ${activeExplore ? "text-white font-bold" : ""
-                    }`}
+                  className={`cursor-pointer flex items-center ${activeExplore ? "text-white font-bold" : ""}`}
                   onClick={handleExploreMenuToggle}
                 >
                   Explore <span className="text-[12px] ml-1">▼</span>
@@ -101,8 +114,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: isExploreOpen ? 1 : 0, y: isExploreOpen ? 0 : -10 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className={`absolute px-3.5 cursor-pointer top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-lg z-50 ${isExploreOpen ? "block" : "hidden"
-                    }`}
+                  className={`absolute px-3.5 cursor-pointer top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-lg z-50 ${isExploreOpen ? "block" : "hidden"}`}
                 >
                   {[
                     { href: "/funActivities", label: "Fun Activities" },
@@ -116,10 +128,9 @@ export default function Navbar() {
                       key={index}
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2, ease: "easeInOut" }}
-                      className={`p-2 hover:bg-gray-200 transition-all ease-in-out rounded-4xl ${activeExplore === item.href ? "font-bold text-blue-600" : ""
-                        }`}
+                      className={`p-2 hover:bg-gray-200 transition-all ease-in-out rounded-4xl ${activeExplore === item.href ? "font-bold text-blue-600" : ""}`}
                     >
-                      <Link href={item.href} onClick={() => handleMenuItemClick(item.href)}>
+                      <Link href={item.href} onClick={() => handleExploreMenuItemClick(item.href)}>
                         {item.label}
                       </Link>
                     </motion.li>
@@ -130,7 +141,7 @@ export default function Navbar() {
               {/* Shop Dropdown */}
               <li ref={shopRef} className="relative">
                 <button
-                  className="hover:text-gray-700 flex items-center cursor-pointer"
+                  className={` flex items-center cursor-pointer ${activeShop ? "text-white font-bold" : ""} `}
                   onClick={handleShopMenuToggle}
                 >
                   Shop <span className="text-[12px] ml-1">▼</span>
@@ -139,12 +150,11 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: isShopOpen ? 1 : 0, y: isShopOpen ? 0 : -10 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className={`absolute px-3.5 cursor-pointer top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-lg z-50 ${isShopOpen ? "block" : "hidden"
-                    }`}
+                  className={`  absolute px-3.5 cursor-pointer top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-lg z-50 ${isShopOpen ? "block" : "hidden"}`}
                 >
                   {[
                     { href: "/shop1", label: "Gift Sets" },
-                    { href: "/shop1", label: "All Products" },
+                    { href: "/allProducts", label: "All Products" },
                     { href: "/shop1", label: "T-Shirts" },
                     { href: "/shop1", label: "Hoodies & Sweatshirts" },
                     { href: "/shop1", label: "Kids’ Collection" },
@@ -156,9 +166,9 @@ export default function Navbar() {
                       key={index}
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2, ease: "easeInOut" }}
-                      className="p-2 hover:bg-gray-200 transition-all ease-in-out rounded-4xl"
+                      className={` ${activeShop === item.href ? "font-bold text-blue-600" : ""} p-2  transition-all ease-in-out rounded-4xl`}
                     >
-                      <Link href={item.href} onClick={() => setIsShopOpen(false)}>
+                      <Link className={``} href={item.href} onClick={() => handleShopMenuItemClick(item.href)}>
                         {item.label}
                       </Link>
                     </motion.li>
