@@ -59,7 +59,7 @@ const BookStoryPage = () => {
                             transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
                             className="w-full bg-white rounded-2xl group transition-all duration-300 hover:shadow-lg hover:shadow-yellow-300"
                         >
-                            <Link href={""}>
+                            <Link href={`/bookStory/${book.id}`}>
                                 <Image
                                     width={286}
                                     height={291}
