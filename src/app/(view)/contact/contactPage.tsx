@@ -116,7 +116,7 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex-1 hidden lg:block"
+            className="flex-1  "
           >
             <Image
               src="/contactImg.png"
