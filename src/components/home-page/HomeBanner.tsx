@@ -4,8 +4,8 @@ import Image from 'next/image'
 
 const HomeBanner = () => {
     return (
-        <>
-            <div style={{zIndex:""}} className="bg-[url('/homeBgImg.png')] h-[881px]  lg:max-w-5xl w-full bg-cover bg-center mx-auto relative">
+        <div className="bg-primary " >
+            <div className="bg-[url('/homeBgImg.png')] h-[881px]  lg:max-w-5xl w-full bg-cover bg-center mx-auto relative">
             </div>
 
             <div className="absolute top-24 lg:top-[22%] left-1/2 transform -translate-x-1/2 w-full px-4 lg:px-0">
@@ -39,7 +39,7 @@ const HomeBanner = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

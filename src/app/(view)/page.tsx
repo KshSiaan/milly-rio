@@ -1,8 +1,10 @@
+
 import HomeBanner from "@/components/home-page/HomeBanner";
-import React from "react";
+import {HomeHeroSection}   from "@/components/home-page/HomeHeroSection";
 
 export default function Home() {
-  return <div className=" w-dvw bg-primary">
+  return <div className=" w-dvw ">
     <HomeBanner></HomeBanner>
-  </div>;
+    <HomeHeroSection></HomeHeroSection>
+  </div>
 }

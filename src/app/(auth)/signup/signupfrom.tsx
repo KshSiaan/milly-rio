@@ -31,13 +31,13 @@ const SignupForm = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className=" lg:mt-20 mt-[20%] flex flex-col lg:flex-row  items-center justify-center lg:gap-16 "
+            className=" lg:mt-20 mt-[18%] flex flex-col lg:flex-row  items-center justify-center lg:gap-16 "
         >
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="bg-white px-6 rounded-lg shadow-lg shadow-[#EDEDED40] lg:w-[496px] w-full py-8 border  lg:py-16 "
+                className="bg-white px-6 rounded-lg shadow-lg shadow-[#EDEDED40] lg:w-[496px] w-full py-7 border  lg:py-16 "
             >
                 <h2 className="lg:text-[28px] text-xl  text-center text-[#000030] font-bold ">
                     Sign up
