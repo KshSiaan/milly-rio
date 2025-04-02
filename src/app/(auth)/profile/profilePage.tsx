@@ -6,8 +6,10 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import React from 'react'
 import { motion } from "framer-motion"
+import Link from 'next/link'
 const ProfilePage = () => {
     interface profile {
+        id: number,
         name: string,
         email: string,
         phone: string,
@@ -16,6 +18,7 @@ const ProfilePage = () => {
         img: string,
     };
     const profileData: profile = {
+        id: 1,
         name: 'John Doe',
         email: 'johndoe@example.com',
         phone: '0912345678',
@@ -100,7 +103,7 @@ const ProfilePage = () => {
                         </div>
                         <div className=' mt-5 lg:mt-9 flex flex-col items-center md:flex-row lg:flex-row gap-3 lg:mb-0 md:mb-0 mb-7  ' >
                             <div>
-                                <Button className=' bg-[#FFC107] w-[182px] h-[44px] hover:bg-amber-400 text-[#FFFFFF] font-bold text-xl ' >Edit profile</Button>
+                                <Link href={`/profile/${profileData.id}`}><Button className=' bg-[#FFC107] w-[182px] h-[44px] hover:bg-amber-400 text-[#FFFFFF] font-bold text-xl ' >Edit profile</Button></Link>
 
                             </div>
                             <div>
