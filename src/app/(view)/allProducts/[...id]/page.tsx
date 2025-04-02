@@ -1,3 +1,7 @@
+"use client"
+
+
+import { paymentSuccessMsg } from '@/components/shared/successMsg'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -20,6 +24,12 @@ const Page = () => {
     price: 4820.00,
     description: "Introducing the Gizmo Pro, the ultimate gadget for tech enthusiasts! With its sleek design and cutting-edge features, this device is perfect for anyone looking to enhance their daily routine. The Gizmo Pro boasts a powerful battery life, ensuring you stay connected throughout the day. Its user-friendly interface makes navigation a breeze, while the high-resolution display brings your content to life. Whether you're streaming your favorite shows or tackling work projects, the Gizmo Pro delivers exceptional performance. Upgrade your tech game with the Gizmo Pro today!"
   }
+
+  const handlePayment = (e: any) => {
+    console.log(e)
+    paymentSuccessMsg()
+  }
+
   return (
     <div className=' bg-[#f5f8fc] ' >
       <div className=' max-w-[1216px] mx-auto pt-5 lg:pt-10 pb-12 lg:pb-24 px-3 lg:px-0 ' >
@@ -72,7 +82,7 @@ const Page = () => {
 
             <div className=' bg-white p-4 rounded-2xl ' >
               <h1 className=' text-[#000030] font-semibold text-xl ' >Shipping Address</h1>
-              <form className='flex flex-col mt-6 ' >
+              <div className='flex flex-col mt-6 ' >
                 {/* counter  */}
                 <input type='text' className=" p-2 rounded-[8px] border-none hover:outline-0 focus:outline-0 bg-[#F6F6F6] placeholder:text-[#6D6D6D] " placeholder='Country' />
                 {/* State */}
@@ -81,48 +91,51 @@ const Page = () => {
                 <input type='text' className=" mt-4 p-2 rounded-[8px] border-none hover:outline-0 focus:outline-0 bg-[#F6F6F6] placeholder:text-[#6D6D6D] " placeholder='City' />
                 {/* ZIP Code */}
                 <input type='text' className=" mt-4 p-2 rounded-[8px] border-none hover:outline-0 focus:outline-0 bg-[#F6F6F6] placeholder:text-[#6D6D6D] " placeholder='ZIP Code' />
-              </form>
+              </div>
             </div>
 
 
             {/* card information  */}
 
 
-            <div className=' bg-white p-4 rounded-2xl mt-6 ' >
-              <h1 className=' text-[#000030] font-semibold text-xl ' >Card Information</h1>
-              <div className='flex flex-col mt-6 ' >
-                {/* Card Number  */}
-                <div className=' flex flex-col relative  ' >
-                  <label className=' text-[#000030] font-medium text-[16px] ' htmlFor="card">Card Number</label>
-                  <input id='card' type='text' className=" p-2 mt-1  rounded-[8px] border-none hover:outline-0 focus:outline-0 bg-[#F6F6F6] placeholder:text-[#6D6D6D] " placeholder='123 458 6458' />
-                  {/* icon  */}
-                  <div className=' flex items-center absolute  right-0 top-[40px] mr-4 gap-1 ' >
-                    <span>
-                      <FaCcVisa className=' w-[22px] h-[14px] ' />
-                    </span>
-                    <span>
-                      <FaCcMastercard className=' w-[22px] h-[14px] ' />
-                    </span>
+            <form onSubmit={handlePayment} >
+              <div className=' bg-white p-4 rounded-2xl mt-6 ' >
+                <h1 className=' text-[#000030] font-semibold text-xl ' >Card Information</h1>
+                <div className='flex flex-col mt-6 ' >
+                  {/* Card Number  */}
+                  <div className=' flex flex-col relative  ' >
+                    <label className=' text-[#000030] font-medium text-[16px] ' htmlFor="card">Card Number</label>
+                    <input id='card' type='text' className=" p-2 mt-1  rounded-[8px] border-none hover:outline-0 focus:outline-0 bg-[#F6F6F6] placeholder:text-[#6D6D6D] " placeholder='123 458 6458' />
+                    {/* icon  */}
+                    <div className=' flex items-center absolute  right-0 top-[40px] mr-4 gap-1 ' >
+                      <span>
+                        <FaCcVisa className=' w-[22px] h-[14px] ' />
+                      </span>
+                      <span>
+                        <FaCcMastercard className=' w-[22px] h-[14px] ' />
+                      </span>
+                    </div>
+                  </div>
+                  {/* Expiration Date  */}
+                  <div className=' flex flex-col relative mt-4  ' >
+                    <label className=' text-[#000030] font-medium text-[16px] ' htmlFor="date">Expiration Date</label>
+                    <input id='date' type='text' className=" p-2 mt-1  rounded-[8px] border-none hover:outline-0 focus:outline-0 bg-[#F6F6F6] placeholder:text-[#6D6D6D] " placeholder='123 458 6458' />
+
+                  </div>
+                  {/* Expiration Date  */}
+                  <div className=' flex flex-col relative mt-4  ' >
+                    <label className=' text-[#000030] font-medium text-[16px] ' htmlFor="code">Security Code</label>
+                    <input id='code' type='text' className=" p-2 mt-1  rounded-[8px] border-none hover:outline-0 focus:outline-0 bg-[#F6F6F6] placeholder:text-[#6D6D6D] " placeholder='CVV' />
+
                   </div>
                 </div>
-                {/* Expiration Date  */}
-                <div className=' flex flex-col relative mt-4  ' >
-                  <label className=' text-[#000030] font-medium text-[16px] ' htmlFor="date">Expiration Date</label>
-                  <input id='date' type='text' className=" p-2 mt-1  rounded-[8px] border-none hover:outline-0 focus:outline-0 bg-[#F6F6F6] placeholder:text-[#6D6D6D] " placeholder='123 458 6458' />
-
-                </div>
-                {/* Expiration Date  */}
-                <div className=' flex flex-col relative mt-4  ' >
-                  <label className=' text-[#000030] font-medium text-[16px] ' htmlFor="code">Security Code</label>
-                  <input id='code' type='text' className=" p-2 mt-1  rounded-[8px] border-none hover:outline-0 focus:outline-0 bg-[#F6F6F6] placeholder:text-[#6D6D6D] " placeholder='CVV' />
-
-                </div>
               </div>
-            </div>
+              <div className=' mt-10 ' >
+                <Button className=' w-full bg-[#F6BB09] hover:bg-amber-500 pt-2 px-4 rounded-[40px] text-white font-bold text-xl ' >Pay</Button>
+              </div>
+            </form>
 
-            <div className=' mt-10 ' >
-              <Button className=' w-full bg-[#F6BB09] hover:bg-amber-500 pt-2 px-4 rounded-[40px] text-white font-bold text-xl ' >Pay</Button>
-            </div>
+
 
           </div>
         </div>

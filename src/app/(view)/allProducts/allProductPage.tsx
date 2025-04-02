@@ -65,7 +65,7 @@ const AllProductPage = () => {
     ];
 
     return (
-        <div className='bg-[#f5f8fc] pb-14 pt-10'>
+        <div className='bg-[#f5f8fc] pb-7 lg:pb-14 pt-5 lg:pt-10 px-3 lg:px-0 '>
             <div className='max-w-[1216px] mx-auto'>
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
@@ -82,7 +82,7 @@ const AllProductPage = () => {
                     {products.map((product) => (
                         <motion.div
                             key={product.id}
-                            className='w-[286px] p-4 bg-white rounded-3xl hover:border border-amber-300'
+                            className='w-[286px] mx-auto p-4 bg-white rounded-3xl hover:border border-amber-300'
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
@@ -109,7 +109,7 @@ const AllProductPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                 >
-                    <div className="flex items-center space-x-2 bg-white px-3 py-2  rounded-lg mt-[46px] ">
+                    <div className="flex lg:flex-row flex-col items-center space-x-2 bg-white px-3 py-2  rounded-lg mt-[46px] ">
                         {/* Previous Button */}
                         <button className="flex items-center px-3 py-1 text-[#000030] rounded-md hover:bg-gray-200">
                             <ChevronLeft size={18} />

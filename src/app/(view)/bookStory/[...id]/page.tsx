@@ -91,7 +91,7 @@ const Page = () => {
 
 
   return <div className=" bg-[#f5f8fc]   " >
-    <div className="max-w-[1216px] mx-auto pt-[63px] pb-[134px]">
+    <div className="max-w-[1216px] mx-auto pt-7 lg:pt-[63px] pb-14 lg:pb-[134px]">
       <div className="flex items-center gap-2.5">
         <div>
           <Link href={"/bookStory"}>
@@ -115,7 +115,7 @@ const Page = () => {
           </Link>
         </div>
         <div>
-          <h1 className="text-4xl font-semibold text-[#000030]">
+          <h1 className="lg:text-4xl font-semibold text-[#000030]">
             Milly and Rio’s Hospital Adventure: The ABCs of Type 1 Diabetes
           </h1>
         </div>
@@ -133,7 +133,7 @@ const Page = () => {
         </motion.div>
 
         <motion.p
-          className="mt-6 text-[#000030] text-[16px]"
+          className="mt-6 text-[#000030] px-3 lg:px-0 text-[16px]"
           initial="hidden"
           animate="visible"
           variants={animationVariants}
