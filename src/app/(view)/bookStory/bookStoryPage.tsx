@@ -29,7 +29,7 @@ const BookStoryPage = () => {
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="max-w-[1216px] mx-auto py-16 ">
+                className="max-w-[1216px] mx-auto px-2 lg:px-0 py-6 lg:py-16 ">
                 {/* Header */}
                 <motion.div
 
@@ -84,7 +84,7 @@ const BookStoryPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                 >
-                    <div className="flex items-center space-x-2 bg-white px-3 py-2  rounded-lg mt-[46px] ">
+                    <div className="flex flex-col lg:flex-row items-center space-x-2 bg-white px-3 py-2  rounded-lg mt-[46px] ">
                         {/* Previous Button */}
                         <button className="flex items-center px-3 py-1 text-[#000030] rounded-md hover:bg-gray-200">
                             <ChevronLeft size={18} />
