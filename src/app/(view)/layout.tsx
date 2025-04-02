@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/footer";
 import Navbar from "@/components/shared/navbar";
 
 export default function Layout({
@@ -9,6 +10,7 @@ export default function Layout({
     <>
       <Navbar />
       {children}
+      <Footer></Footer>
     </>
   );
 }
