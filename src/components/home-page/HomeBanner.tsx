@@ -4,8 +4,8 @@ import Image from 'next/image'
 
 const HomeBanner = () => {
     return (
-        <>
-            <div className="bg-[url('/homeBgImg.png')] h-[956px] lg:max-w-5xl w-full bg-cover bg-center mx-auto relative">
+        <div className="bg-primary " >
+            <div className="bg-[url('/homeBgImg.png')] h-[881px]  lg:max-w-5xl w-full bg-cover bg-center mx-auto relative">
             </div>
 
             <div className="absolute top-24 lg:top-[22%] left-1/2 transform -translate-x-1/2 w-full px-4 lg:px-0">
@@ -22,7 +22,7 @@ const HomeBanner = () => {
                             <Button className="w-full lg:w-[286px] rounded-4xl text-white text-lg lg:text-xl font-bold hover:text-[#FFC107] hover:bg-white" variant={"gold"}>
                                 Explore books
                             </Button>
-                            <Button className="w-full lg:w-[286px] rounded-4xl bg-white text-[#000030] text-lg lg:text-xl font-bold hover:text-[#FFC107]">
+                            <Button className="w-full lg:w-[286px] rounded-4xl bg-white text-[#000030] text-lg hover:bg-white hover:border-2 border-[#FFC107] lg:text-xl font-bold hover:text-[#FFC107]">
                                 Fun activities
                             </Button>
                         </div>
@@ -39,7 +39,7 @@ const HomeBanner = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
