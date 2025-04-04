@@ -1,46 +1,80 @@
-import React from 'react'
-import { Button } from '../ui/button'
-import Image from 'next/image'
+"use client"; // Ensures animations work in Next.js App Router
+
+import React from 'react';
+import { Button } from '../ui/button';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const HomeBanner = () => {
     return (
-        <div className="bg-primary " >
-            <div className="bg-[url('/homeBgImg.png')] h-[881px]  lg:max-w-5xl w-full bg-cover bg-center mx-auto relative">
-            </div>
+        <div className="bg-primary relative">
+            {/* Background Image */}
+            <div className="bg-[url('/homeBgImg.png')] h-[450px] md:h-[600px] lg:h-[881px] lg:w-5xl md:w-full w-full bg-cover bg-center  mx-auto"></div>
 
-            <div className="absolute top-24 lg:top-[22%] left-1/2 transform -translate-x-1/2 w-full px-4 lg:px-0">
+            {/* Content Wrapper */}
+            <motion.div 
+                className="absolute top-20 md:top-[18%] lg:top-[22%] left-1/2 transform -translate-x-1/2 w-full px-4 lg:px-0"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+            >
                 <div className="w-full lg:w-[64rem] mx-auto flex flex-col lg:flex-row items-center lg:justify-between">
+                    
                     {/* Left Section */}
-                    <div className="w-full lg:w-[602px] text-center lg:text-left">
-                        <h1 className="text-3xl lg:text-6xl text-[#000030] font-bold leading-tight">
+                    <motion.div 
+                        className="w-full lg:w-[602px] text-center lg:text-left"
+                        initial={{ opacity: 0, y: -30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl text-[#000030] font-bold leading-tight">
                             Milly & Rio
                         </h1>
-                        <p className="text-xl lg:text-2xl text-[#000030] mt-2">
+                        <p className="text-lg md:text-xl lg:text-2xl text-[#000030] mt-2">
                             Adventures in learning, friendship & discovering!
                         </p>
-                        <div className="mt-6 lg:mt-16 flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-6">
-                            <Button className="w-full lg:w-[286px] rounded-4xl text-white text-lg lg:text-xl font-bold hover:text-[#FFC107] hover:bg-white" variant={"gold"}>
+
+                        {/* Buttons Animation */}
+                        <motion.div 
+                            className="mt-6 lg:mt-16 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-6"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                        >
+                            <Button 
+                                className="w-full sm:w-[200px] lg:w-[286px] rounded-4xl text-white text-lg lg:text-xl font-bold hover:text-[#FFC107] hover:bg-white" 
+                                variant={"gold"}
+                            >
                                 Explore books
                             </Button>
-                            <Button className="w-full lg:w-[286px] rounded-4xl bg-white text-[#000030] text-lg hover:bg-white hover:border-2 border-[#FFC107] lg:text-xl font-bold hover:text-[#FFC107]">
+                            <Button 
+                                className="w-full sm:w-[200px] lg:w-[286px] rounded-4xl bg-white text-[#000030] text-lg hover:bg-white hover:border-2 border-[#FFC107] lg:text-xl font-bold hover:text-[#FFC107]"
+                            >
                                 Fun activities
                             </Button>
-                        </div>
-                    </div>
-                    {/* Right Section */}
-                    <div className="mt-8 lg:mt-0">
+                        </motion.div>
+                    </motion.div>
+
+                    {/* Right Section - Image Animation */}
+                    <motion.div 
+                        className="mt-8 lg:mt-0"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                    >
                         <Image
-                            className="rounded-full object-contain w-[300px] md:w-[450px] lg:w-[610px] h-auto"
+                            className="rounded-full object-contain w-[250px] md:w-[400px] lg:w-[550px] xl:w-[610px] h-auto"
                             src={"/homeImg1.png"}
                             width={610}
                             height={610}
-                            alt=""
+                            alt="Milly & Rio"
                         />
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+                    </motion.div>
 
-export default HomeBanner
+                </div>
+            </motion.div>
+        </div>
+    );
+};
+
+export default HomeBanner;

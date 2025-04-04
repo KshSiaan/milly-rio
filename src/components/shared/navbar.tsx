@@ -68,7 +68,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="bg-primary">
-        <div className="max-w-[1216px] mx-auto h-[64px] w-dvw shadow-sm sticky top-0 flex flex-row justify-between items-center z-50 relative">
+        <div className="max-w-[1216px] mx-auto h-[64px] w-dvw  sticky top-0 flex flex-row justify-between items-center z-50 relative">
           <div>
             <motion.div
               initial={{ x: -200 }}
