@@ -1,5 +1,7 @@
+"use client"; // Ensure animations work in Next.js App Router
+
 import Image from 'next/image';
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export const HomeHeroSection = () => {
   interface ImageData {
@@ -41,10 +43,19 @@ export const HomeHeroSection = () => {
   return (
     <div className="bg-[url('/bannerBgImg.png')] py-20 bg-cover bg-center mx-auto relative flex flex-col items-center">
       
-      {/* Image Grid */}
-      <div className="max-w-[964px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
+      {/* Image Grid Animation */}
+      <motion.div 
+        className="max-w-[964px] mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 mb-10"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+      >
         {imageArray.map((item, i) => (
-          <div key={i} className="flex justify-center">
+          <motion.div 
+            key={i} 
+            className="flex justify-center"
+            whileHover={{ scale: 1.1 }}
+          >
             <Image
               className="rounded-3xl object-cover"
               src={`/${item.img}`}
@@ -52,19 +63,35 @@ export const HomeHeroSection = () => {
               width={132}
               height={132}
             />
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      {/* Special Message Heading */}
-      <h1 className="text-2xl font-bold text-center mb-6">A Special Message from Milly & Rio</h1>
+      {/* Special Message Heading Animation */}
+      <motion.h1 
+        className="text-2xl md:text-3xl font-bold text-center mb-6"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+      >
+        A Special Message from Milly & Rio
+      </motion.h1>
 
-      {/* Hero Message Section */}
-      <div className="bg-[#eaf9f6] max-w-[1216px] mx-auto p-6 rounded-3xl border-2 border-black">
+      {/* Hero Message Section Animation */}
+      <motion.div 
+        className="bg-[#eaf9f6] max-w-[95%] md:max-w-[1216px] mx-auto p-6 sm:p-10 rounded-3xl"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.7 }}
+      >
         <div className="flex flex-col md:flex-row items-center gap-6">
-
           {/* Left Side - Text Content */}
-          <div className="max-w-lg">
+          <motion.div 
+            className="max-w-lg text-center md:text-left"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
             <p className="text-lg font-semibold">Hey there, friends!</p>
             <p className="mt-4">
               It’s Milly & Rio, and we’re so excited to welcome you to our world—a place where learning about Type 1 Diabetes is fun, easy, and filled with adventure!
@@ -72,60 +99,65 @@ export const HomeHeroSection = () => {
             <p className="mt-4">
               We know that having Type 1 Diabetes can sometimes feel like a big journey, but guess what? You’re never alone. Whether you’re just learning about T1D or you’ve been living with it for a while, we’re here to help with stories, games, and tips that make understanding diabetes SUPER cool!
             </p>
-            <p className="mt-4">
-              Rio’s super sniffer helps him detect when something’s not quite right, and Milly knows just how to handle it with confidence and care. And you? You’re part of our brave, strong, and amazing Milly & Rio crew!
-            </p>
-            <p className="mt-4">
-              So, whether you’re here for fun adventures, helpful tips, or just to say hi, we can’t wait to share this journey with you. Always remember—you’ve got this, and we’ve got you!
-            </p>
             <p className="mt-6 font-semibold">
               With love and high-fives, <br /> Milly & Rio 🐶💙
             </p>
-          </div>
+          </motion.div>
 
-          {/* Right Side - Image */}
-          <div className="w-full md:w-auto">
+          {/* Right Side - Image Animation */}
+          <motion.div 
+            className="w-full md:w-auto flex justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
             <Image
               src="/img-6.png"
               className="object-cover rounded-3xl"
-              width={500}
-              height={500}
+              width={400}
+              height={400}
               alt="Milly & Rio illustration"
             />
-          </div>
-
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Latest Blogs */}
-      <div className="max-w-[1216px] mx-auto mt-12">
-      <h1 className="text-2xl font-bold text-center mb-6">Latest Blogs</h1>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {blogData.map((blog, i) => (
-          <div
-            key={i}
-            
-            className="w-full sm:w-[389px] bg-white border hover:border-amber-300 p-4 rounded-3xl shadow-md"
-          >
-            <Image
-              src={`/${blog.img}`}
-              alt={`Blog ${i + 1}`}
-              width={357}
-              height={242}
-              className="rounded-2xl"
-            />
-            <h2 className="text-[#000030] font-semibold text-[16px] mt-4">
-              {blog.title}
-            </h2>
-            <p className="mt-2 text-[#6D6D6D] text-[14px] leading-7">
-              {blog.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
+      {/* Latest Blogs Animation */}
+      <motion.div 
+        className="max-w-[95%] md:max-w-[1216px] mx-auto mt-12"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.4 }}
+      >
+        <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">Latest Blogs</h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {blogData.map((blog, i) => (
+            <motion.div
+              key={i}
+              className="bg-white border hover:border-amber-300 p-4 sm:p-6 rounded-3xl shadow-md"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.6 + i * 0.2 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Image
+                src={`/${blog.img}`}
+                alt={`Blog ${i + 1}`}
+                width={357}
+                height={242}
+                className="rounded-2xl w-full"
+              />
+              <h2 className="text-[#000030] font-semibold text-lg mt-4">
+                {blog.title}
+              </h2>
+              <p className="mt-2 text-[#6D6D6D] text-sm leading-7">
+                {blog.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 };
-
