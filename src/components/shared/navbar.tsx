@@ -14,6 +14,12 @@ export default function Navbar() {
   const [activeExplore, setActiveExplore] = useState<string | null>(null);
   const [activeShop, setActiveShop] = useState<string | null>(null);
 
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+
+  const openMenu = () => {
+    setOpenMobileMenu(!openMobileMenu);
+  }
+
   const exploreRef = useRef(null);
   const shopRef = useRef(null);
 
@@ -86,6 +92,7 @@ export default function Navbar() {
               <h1 className="font-bold font-baloo text-2xl">Milly & Rio</h1>
             </motion.div>
           </div>
+
           <div>
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex">
@@ -195,6 +202,7 @@ export default function Navbar() {
               </ul>
             </nav>
           </div>
+
           <div className="hidden lg:flex flex-row justify-end items-center gap-4">
             <Switch />
             <Link href={"/login"}>
@@ -203,6 +211,63 @@ export default function Navbar() {
               </Button>
             </Link>
           </div>
+
+
+          {/* Mobile Hamburger Button */}
+          <div className="lg:hidden block">
+            <h1 onClick={openMenu} className="text-2xl font-semibold cursor-pointer">
+              Menu
+            </h1>
+          </div>
+
+          {openMobileMenu && (
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-0 left-0 w-2/3 bg-white h-full shadow-lg z-50 p-6"
+            >
+              <div className="flex justify-between items-center">
+                <h1 className="text-xl font-bold">Milly & Rio</h1>
+                <button onClick={openMenu} className="text-xl">
+                  X
+                </button>
+              </div>
+
+              <ul className="mt-6 space-y-4">
+                <li>
+                  <Link href="/" onClick={openMenu} className="text-lg">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about" onClick={openMenu} className="text-lg">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blogs" onClick={openMenu} className="text-lg">
+                    Blogs
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" onClick={openMenu} className="text-lg">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/shop1" onClick={openMenu} className="text-lg">
+                    Shop
+                  </Link>
+                </li>
+              </ul>
+            </motion.div>
+          )}
+
+
+
+
         </div>
       </nav>
     </>
