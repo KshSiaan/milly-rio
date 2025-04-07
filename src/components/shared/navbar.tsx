@@ -120,7 +120,7 @@ export default function Navbar() {
                     {[
                       { href: "/funActivities", label: "Fun Activities" },
                       { href: "/bookStory", label: "Books & Stories" },
-                      { href: "/explore1", label: "Games" },
+                      { href: "#", label: "Games" },
                       { href: "/explore1", label: "Meet Milly & Rio" },
                       { href: "/explore1", label: "Educational Resources" },
                       { href: "/explore1", label: "Community & Events" },
