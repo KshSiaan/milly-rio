@@ -65,7 +65,7 @@ const gamesData: Game[] = [
 const FunPage = () => {
     return (
         <div className="bg-[#f5f8fc] pt-10 pb-24">
-            <div className="max-w-[1216px] mx-auto lg:px-0 px-4">
+            <div className="max-w-[1216px] mx-auto lg:px-2 px-4">
 
                 {/* Header Section with Animation */}
                 <motion.div
@@ -123,20 +123,20 @@ const FunPage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 viewport={{ once: true }}
-                                className="bg-white p-4 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 "
+                                className="bg-white p-4  rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 "
                             >
                                 {
                                     index % 2 == 0 ?
                                         <div>
-                                            <Link href={`/funActivities/${item.id}`}>
-                                                <Image src={item.img} width={254} height={100} className="rounded-xl" alt={item.title} />
-                                                <h3 className="text-sm text-[#000030] mt-2">{item.title}</h3>
+                                            <Link className="" href={`/funActivities/${item.id}`}>
+                                                <Image src={item.img} width={254} height={100} className="rounded-xl block mx-auto  " alt={item.title} />
+                                                <h3 className="text-sm text-center lg:text-start text-[#000030] mt-2">{item.title}</h3>
                                             </Link>
                                         </div>
                                         :
                                         <div>
-                                            <Image src={item.img} width={254} height={100} className="rounded-xl" alt={item.title} />
-                                            <h3 className="text-sm text-[#000030] mt-2">{item.title}</h3>
+                                            <Image src={item.img} width={254} height={100} className="rounded-xl block mx-auto " alt={item.title} />
+                                            <h3 className="text-sm text-[#000030] text-center lg:text-start  mt-2">{item.title}</h3>
                                         </div>
                                 }
                             </motion.div>

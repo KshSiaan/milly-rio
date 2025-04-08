@@ -18,9 +18,9 @@ const LoginFrom = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col lg:flex-row justify-center gap-3 items-center lg:gap-16"
+            className="flex flex-col lg:flex-row justify-center px-2 gap-3 items-center lg:gap-16"
         >
-            <motion.div className="lg:mt-20 mt-40 items-center" initial={{ scale: 0.9 }} animate={{ scale: 1 }} transition={{ duration: 0.3 }}>
+            <motion.div className="lg:mt-20 mt-10 items-center" initial={{ scale: 0.9 }} animate={{ scale: 1 }} transition={{ duration: 0.3 }}>
                 <div className="bg-white px-6 rounded-4xl shadow-lg lg:w-[496px] w-full py-8 lg:py-16 border border-blue-200">
                     <h2 className="lg:text-[28px] text-xl text-center text-[#000030] font-bold">Sign in</h2>
                     <p className="text-center text-[#888888] text-xs mt-2 pb-8 lg:pb-16">Enter correct information to sign in the Milly & Rio account.</p>
@@ -49,7 +49,7 @@ const LoginFrom = () => {
                             <Link href="/forgot-password" className="text-yellow-500 text-sm">Forget password?</Link>
                         </div>
                         <motion.div >
-                            <Button className="w-full mt-14 font-semibold" variant="gold">
+                            <Button className="w-full lg:mt-14 my-4 font-semibold" variant="gold">
                                 Login
                             </Button>
                         </motion.div>
