@@ -57,6 +57,7 @@ export default function Navbar() {
     }
   }, [songPlaying]);
 
+  //?? Others
   const openMenu = () => {
     setOpenMobileMenu((prev) => !prev);
   };
