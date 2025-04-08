@@ -1,12 +1,12 @@
-import React from 'react'
-import OtpFrom from './otpFrom'
+// import React from 'react'
+// import OtpFrom from './otpFrom'
 
-const Page = () => {
-  return (
-    <div>
-        <OtpFrom></OtpFrom>
-    </div>
-  )
-}
+// const Page = () => {
+//   return (
+//     <div>
+//         <OtpFrom></OtpFrom>
+//     </div>
+//   )
+// }
 
-export default Page
+// export default Page
