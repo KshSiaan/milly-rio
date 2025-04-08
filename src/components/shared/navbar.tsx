@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../ui/button";
 import Switch from "../ui/switch";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IoClose, IoMenu } from "react-icons/io5";
 
 export default function Navbar() {
   const pathname: string = usePathname();
@@ -74,7 +75,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="bg-primary">
-        <div className="max-w-[1216px] mx-auto h-[64px] w-dvw  sticky top-0 flex flex-row justify-between items-center z-50 relative">
+        <div className="max-w-[1216px] mx-auto h-[64px] w-dvw  sticky top-0 flex flex-row justify-between items-center z-50 px-3 lg:px-0 relative">
           <div>
             <motion.div
               initial={{ x: -200 }}
@@ -104,7 +105,7 @@ export default function Navbar() {
                       setActiveExplore(null);
                       setActiveShop(null);  // Reset active states when navigating to Home
                     }}
-                    className={`${pathname === "/" ? "font-bold text-white" : ""}`}
+                    className={`${pathname === "/" ? "font-bold text-black" : ""}`}
                   >
                     Home
                   </Link>
@@ -214,57 +215,184 @@ export default function Navbar() {
 
 
           {/* Mobile Hamburger Button */}
-          <div className="lg:hidden block">
-            <h1 onClick={openMenu} className="text-2xl font-semibold cursor-pointer">
-              Menu
-            </h1>
-          </div>
+          <h1 onClick={openMenu} className="lg:hidden block text-2xl font-semibold cursor-pointer">
+            {openMobileMenu ? (
+              <IoClose className="text-4xl font-bold block " />
+            ) : (
+              <IoMenu className="text-4xl font-bold block " />
+            )}
+          </h1>
+          <AnimatePresence>
+            {openMobileMenu && (
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.3 }}
+                className="fixed right-0 w-2/3 top-16 bg-gray-100 h-full shadow-lg z-50 p-6"
+              >
+                <div>
+                  {/* Mobile Navigation */}
+                  <nav>
+                    <ul className="flex flex-col font-medium gap-4 text-[#000030]">
 
-          {openMobileMenu && (
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.3 }}
-              className="fixed top-0 left-0 w-2/3 bg-white h-full shadow-lg z-50 p-6"
-            >
-              <div className="flex justify-between items-center">
-                <h1 className="text-xl font-bold">Milly & Rio</h1>
-                <button onClick={openMenu} className="text-xl">
-                  X
-                </button>
-              </div>
+                      {/* Home */}
+                      <li>
+                        <Link
+                          href="/"
+                          onClick={() => {
+                            setActiveExplore(null);
+                            setActiveShop(null);
+                            setOpenMobileMenu(false);
+                          }}
+                          className={`${pathname === "/" ? "font-bold text-black" : ""}`}
+                        >
+                          Home
+                        </Link>
+                      </li>
 
-              <ul className="mt-6 space-y-4">
-                <li>
-                  <Link href="/" onClick={openMenu} className="text-lg">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" onClick={openMenu} className="text-lg">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blogs" onClick={openMenu} className="text-lg">
-                    Blogs
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" onClick={openMenu} className="text-lg">
-                    Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/shop1" onClick={openMenu} className="text-lg">
-                    Shop
-                  </Link>
-                </li>
-              </ul>
-            </motion.div>
-          )}
+                      {/* Explore Dropdown */}
+                      <li ref={exploreRef} className="relative">
+                        <button
+                          className={`cursor-pointer flex items-center ${activeExplore ? "text-black font-bold" : ""}`}
+                          onClick={handleExploreMenuToggle}
+                        >
+                          Explore <span className="text-[12px] ml-1">▼</span>
+                        </button>
 
+                        <AnimatePresence>
+                          {isExploreOpen && (
+                            <motion.ul
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                              className="absolute px-3.5 top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-lg z-40"
+                            >
+                              {[
+                                { href: "/funActivities", label: "Fun Activities" },
+                                { href: "/bookStory", label: "Books & Stories" },
+                                { href: "#", label: "Games" },
+                                { href: "/explore1", label: "Meet Milly & Rio" },
+                                { href: "/explore1", label: "Educational Resources" },
+                                { href: "/explore1", label: "Community & Events" },
+                              ].map((item, index) => (
+                                <motion.li
+                                  key={index}
+                                  whileHover={{ scale: 1.05 }}
+                                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                                  className={`p-2 hover:bg-gray-200 transition-all rounded-4xl ${activeExplore === item.href ? "font-bold text-blue-600" : ""}`}
+                                >
+                                  <Link
+                                    href={item.href}
+                                    onClick={() => {
+                                      handleExploreMenuItemClick(item.href);
+                                      setOpenMobileMenu(false);
+                                    }}
+                                  >
+                                    {item.label}
+                                  </Link>
+                                </motion.li>
+                              ))}
+                            </motion.ul>
+                          )}
+                        </AnimatePresence>
+                      </li>
+
+                      {/* Shop Dropdown */}
+                      <li ref={shopRef} className="relative">
+                        <button
+                          className={`flex items-center cursor-pointer ${activeShop ? "text-black font-bold" : ""}`}
+                          onClick={handleShopMenuToggle}
+                        >
+                          Shop <span className="text-[12px] ml-1">▼</span>
+                        </button>
+
+                        <AnimatePresence>
+                          {isShopOpen && (
+                            <motion.ul
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                              className="absolute px-3.5 top-full left-0 w-[216px] py-4 text-[#000030] rounded-2xl mt-5 bg-white shadow-lg z-40"
+                            >
+                              {[
+                                { href: "/shop1", label: "Gift Sets" },
+                                { href: "/allProducts", label: "All Products" },
+                                { href: "/shop1", label: "T-Shirts" },
+                                { href: "/shop1", label: "Hoodies & Sweatshirts" },
+                                { href: "/shop1", label: "Kids’ Collection" },
+                                { href: "/shop1", label: "Diabetes Awareness" },
+                                { href: "/shop1", label: "Accessories" },
+                                { href: "/shop1", label: "Limited Edition" },
+                              ].map((item, index) => (
+                                <motion.li
+                                  key={index}
+                                  whileHover={{ scale: 1.05 }}
+                                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                                  className={`p-2 hover:bg-gray-200 transition-all rounded-4xl ${activeShop === item.href ? "font-bold text-blue-600" : ""}`}
+                                >
+                                  <Link
+                                    href={item.href}
+                                    onClick={() => {
+                                      handleShopMenuItemClick(item.href);
+                                      setOpenMobileMenu(false);
+                                    }}
+                                  >
+                                    {item.label}
+                                  </Link>
+                                </motion.li>
+                              ))}
+                            </motion.ul>
+                          )}
+                        </AnimatePresence>
+                      </li>
+
+                      {/* Other Links */}
+                      <li>
+                        <Link
+                          href="/about"
+                          onClick={() => setOpenMobileMenu(false)}
+                          className={`${pathname === "/about" ? "font-bold text-black" : ""}`}
+                        >
+                          About
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/blogs"
+                          onClick={() => setOpenMobileMenu(false)}
+                          className={`${pathname === "/blogs" ? "font-bold text-black" : ""}`}
+                        >
+                          Blogs
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/contact"
+                          onClick={() => setOpenMobileMenu(false)}
+                          className={`${pathname === "/contact" ? "font-bold text-black" : ""}`}
+                        >
+                          Contact
+                        </Link>
+                      </li>
+                    </ul>
+                  </nav>
+
+
+                  <div className="flex flex-col  mt-10 gap-4">
+                    <Switch />
+                    <Link href={"/login"}>
+                      <Button variant="gold" className="font-semibold mt-3 ">
+                        Log in
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
 
 
