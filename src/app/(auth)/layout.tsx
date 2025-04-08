@@ -7,10 +7,10 @@ export default function Layout({
 }>) {
   return (
     <>
-      <Navbar />
-      <main  >
-        {children}
-      </main>
+        <Navbar />
+          <main className="" >
+          {children}
+          </main>
     </>
   );
 }

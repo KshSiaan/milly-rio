@@ -33,7 +33,7 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="pt-10 bg-[#f5f8fc] pb-20 px-4">
+    <div className="pt-10 bg-[#f5f8fc] pb-20 px-2   ">
       <div className="max-w-[1216px] mx-auto">
         {/* Heading Section */}
         <motion.div 
@@ -42,7 +42,7 @@ const AboutPage = () => {
           transition={{ duration: 0.8 }}
           className="text-center sm:text-left"
         >
-          <h1 className="text-3xl text-[#000030] font-semibold mb-4">
+          <h1 className="text-3xl dark:text-white text-[#000030] font-semibold mb-4">
             Welcome to the world of Milly & Rio! 🌟
           </h1>
           <p className="text-[#000030] mb-6">
