@@ -4,11 +4,9 @@ import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const HomeBanner = () => {
-  const navig = useRouter();
   return (
     <div className="bg-primary relative">
       {/* Background Image */}
