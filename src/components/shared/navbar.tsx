@@ -3,13 +3,13 @@ import Image from "next/image";
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// import { Button } from "../ui/button";
+
 import Switch from "../ui/switch";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
-
+import { Howl } from "howler";
 // Define types for menu items
 interface MenuItem {
   href: string;
@@ -27,8 +27,38 @@ export default function Navbar() {
   const [activeShop, setActiveShop] = useState<string | null>(null);
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
 
+  const [songPlaying, setSongPlaying] = useState(true);
+  const soundRef = useRef<Howl | null>(null);
+
+  useEffect(() => {
+    soundRef.current = new Howl({
+      src: ["/music/Milly and Rio Hospital Adventure .mp3"],
+      loop: true,
+    });
+
+    if (songPlaying) {
+      soundRef.current.play();
+    }
+
+    return () => {
+      soundRef.current?.stop();
+      soundRef.current?.unload();
+    };
+  }, []);
+
+  useEffect(() => {
+    const sound = soundRef.current;
+    if (!sound) return;
+
+    if (songPlaying) {
+      if (!sound.playing()) sound.play();
+    } else {
+      sound.pause();
+    }
+  }, [songPlaying]);
+
   const openMenu = () => {
-    setOpenMobileMenu(!openMobileMenu);
+    setOpenMobileMenu((prev) => !prev);
   };
 
   const exploreRef = useRef<HTMLLIElement>(null);
@@ -278,7 +308,7 @@ export default function Navbar() {
 
             <div className="hidden lg:flex flex-row justify-end items-center gap-4">
               <div>
-                <Switch />
+                <Switch play={songPlaying} setPlay={setSongPlaying} />
               </div>
               {/* <Link href="/login">
                 <Button variant="gold" className="font-semibold">
@@ -496,7 +526,7 @@ export default function Navbar() {
                     </nav>
 
                     <div className="flex flex-col !mt-10 gap-4">
-                      <Switch />
+                      <Switch setPlay={setSongPlaying} play={songPlaying} />
                       {/* <Link href="/login">
                         <Button variant="gold" className="font-semibold !mt-3">
                           Log in
