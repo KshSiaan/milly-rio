@@ -1,12 +1,12 @@
-import React from 'react'
-import FunPage from './funPage'
+import React from "react";
+import FunPage from "./funPage";
 
 const Page = () => {
   return (
     <div>
-        <FunPage></FunPage>
+      <FunPage></FunPage>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

@@ -1,10 +1,11 @@
-
 import HomeBanner from "@/components/home-page/HomeBanner";
-import {HomeHeroSection}   from "@/components/home-page/HomeHeroSection";
+import { HomeHeroSection } from "@/components/home-page/HomeHeroSection";
 
 export default function Home() {
-  return <div className=" w-dvw ">
-    <HomeBanner></HomeBanner>
-    <HomeHeroSection></HomeHeroSection>
-  </div>
+  return (
+    <div className="w-full">
+      <HomeBanner></HomeBanner>
+      <HomeHeroSection></HomeHeroSection>
+    </div>
+  );
 }

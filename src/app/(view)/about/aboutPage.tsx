@@ -33,20 +33,25 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="pt-10 bg-[#f5f8fc] pb-20 px-2   ">
-      <div className="max-w-[1216px] mx-auto">
+    <div className="!pt-10 bg-[#f5f8fc] !pb-20 !px-2">
+      <div className="max-w-[1216px] !mx-auto">
         {/* Heading Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: -50 }} 
-          animate={{ opacity: 1, y: 0 }} 
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center sm:text-left"
         >
-          <h1 className="text-3xl dark:text-white text-[#000030] font-semibold mb-4">
+          <h1 className="text-3xl dark:text-white text-[#000030] font-semibold !mb-4">
             Welcome to the world of Milly & Rio! 🌟
           </h1>
           <p className="text-[#000030] mb-6">
-            Milly & Rio is an inspiring and fun-filled brand designed to educate, empower, and entertain children, especially those living with Type 1 Diabetes. Through engaging stories, interactive activities, and adorable characters, Milly & Rio help kids and families learn about diabetes care while embracing adventure, friendship, and self-confidence.
+            Milly & Rio is an inspiring and fun-filled brand designed to
+            educate, empower, and entertain children, especially those living
+            with Type 1 Diabetes. Through engaging stories, interactive
+            activities, and adorable characters, Milly & Rio help kids and
+            families learn about diabetes care while embracing adventure,
+            friendship, and self-confidence.
           </p>
         </motion.div>
 
@@ -58,9 +63,9 @@ const AboutPage = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="mb-10"
+              className="!mb-10"
             >
-              <h2 className="text-2xl text-[#000030] font-semibold mb-4">
+              <h2 className="text-2xl text-[#000030] font-semibold !mb-4">
                 {item.title}
               </h2>
               <p className="text-[#000030]">{item.description}</p>

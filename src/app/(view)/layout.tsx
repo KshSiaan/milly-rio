@@ -8,11 +8,11 @@ export default function Layout({
 }>) {
   return (
     <>
-        <Navbar />
-        <main className=" " >
-          {children}
-        </main>
-        <Footer></Footer>
+      <Navbar />
+      <main className="bg-[url('/image/bg-tile.svg')] bg-center bg-repeat">
+        {children}
+      </main>
+      <Footer />
     </>
   );
 }
