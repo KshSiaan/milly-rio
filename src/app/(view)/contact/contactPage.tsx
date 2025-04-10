@@ -25,7 +25,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="bg-[#f5f8fc] !py-10 !px-4">
+    <div className="!py-10 !px-4">
       <div className="max-w-[1216px] !mx-auto">
         {/* Header Section */}
         <motion.div
@@ -36,7 +36,7 @@ const ContactPage = () => {
           <h1 className="text-[#000030] text-3xl font-semibold !mb-2 text-center sm:text-left">
             Contact Us
           </h1>
-          <p className="mb-10 text-[#000030] text-center sm:text-left">
+          <p className="!mb-10 text-[#000030] text-center sm:text-left">
             Let’s connect. We are here to help & we’d love to hear from you.
             Whether you have a question, a comment, or just want to chat, you
             can reach out to us through the contact form on this page.

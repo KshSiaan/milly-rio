@@ -544,6 +544,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      <div className="h-[64px] w-full"></div>
     </>
   );
 }

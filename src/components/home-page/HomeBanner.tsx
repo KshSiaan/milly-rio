@@ -10,7 +10,7 @@ const HomeBanner = () => {
   return (
     <div className="bg-primary relative">
       {/* Background Image */}
-      <div className="bg-[url('/homeBgImg.png')] h-screen w-full bg-contain bg-no-repeat bg-center !mx-auto"></div>
+      <div className="bg-[url('/homeBgImg.png')] h-[calc(100dvh-64px)] w-full bg-contain bg-no-repeat bg-center !mx-auto"></div>
 
       {/* Content Wrapper */}
       <motion.div
