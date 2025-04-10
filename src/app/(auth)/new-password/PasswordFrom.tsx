@@ -27,18 +27,18 @@ const PasswordFrom = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className=" lg:mt-40 mt-20 flex flex-col lg:flex-row  items-center justify-center lg:gap-16 "
+      className=" lg:!mt-40 !mt-20 flex flex-col lg:flex-row  items-center justify-center lg:gap-16 "
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="bg-white px-6 rounded-lg shadow-lg shadow-[#EDEDED40] lg:w-[496px] w-full py-8 border  lg:py-16 "
+        className="bg-white !px-6 rounded-lg shadow-lg shadow-[#EDEDED40] lg:w-[496px] w-full !py-8 border  lg:py-16 "
       >
         <h2 className="lg:text-[28px] text-xl  text-center text-[#000030] font-bold ">
           Create a new password
         </h2>
-        <p className="text-center text-[#888888] text-xs mt-2 pb-8 lg:pb-16  ">
+        <p className="text-center text-[#888888] text-xs !mt-2 !pb-8 lg:!pb-16  ">
           You have to update your password for log in.
         </p>
 
@@ -49,7 +49,7 @@ const PasswordFrom = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className={`relative border border-gray-300 rounded-lg mt-4 px-3 py-2 transition-all ${
+            className={`relative border border-gray-300 rounded-lg !mt-4 !px-3 !py-2 transition-all ${
               passwordFocused || password ? "border-blue-500" : ""
             }`}
           >
@@ -64,7 +64,7 @@ const PasswordFrom = () => {
             </legend>
             <input
               type={passwordVisible ? "text" : "password"}
-              className="w-full placeholder-[#000030] outline-none bg-transparent text-gray-700 py-1"
+              className="w-full placeholder-[#000030] outline-none bg-transparent text-gray-700 !py-1"
               placeholder={passwordFocused ? "Enter your password" : ""}
               value={password}
               onFocus={() => setPasswordFocused(true)}
@@ -92,22 +92,22 @@ const PasswordFrom = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className={`relative border border-gray-300 rounded-lg mt-4 px-3 py-2 transition-all ${
+            className={`relative border border-gray-300 rounded-lg !mt-4 !px-3 !py-2 transition-all ${
               confirmPasswordFocused || confirmPassword ? "border-blue-500" : ""
             }`}
           >
             <legend
               className={`absolute text-sm transition-all ${
                 confirmPasswordFocused || confirmPassword
-                  ? "-top-3 left-2 text-[#F6BB09] text-[16px] px-1 bg-white"
-                  : "top-1/2 left-3 transform -translate-y-1/2 text-[#000030] text-[16px]  "
+                  ? "-top-3 left-2 text-[#F6BB09] text-[16px] !px-1 bg-white"
+                  : "top-1/2 left-3 transform -translate-y-1/2 text-[#000030] text-[16px]"
               }`}
             >
               Confirm Password
             </legend>
             <input
               type={confirmPasswordVisible ? "text" : "password"}
-              className="w-full placeholder-[#000030] outline-none bg-transparent text-gray-700 py-1"
+              className="w-full placeholder-[#000030] outline-none bg-transparent text-gray-700 !py-1"
               placeholder={
                 confirmPasswordFocused ? "Confirm your password" : ""
               }
@@ -134,7 +134,7 @@ const PasswordFrom = () => {
 
           <motion.div>
             <Button
-              className="w-full mt-14 font-semibold text-xl "
+              className="w-full !mt-14 font-semibold text-xl "
               variant="gold"
             >
               Update

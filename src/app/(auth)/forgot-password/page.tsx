@@ -1,8 +1,12 @@
 import React from "react";
-// import EmailFrom from './emailFrom'
+import EmailFrom from "./emailFrom";
 
 const page = () => {
-  return <>{/* <EmailFrom></EmailFrom> */}</>;
+  return (
+    <>
+      <EmailFrom></EmailFrom>
+    </>
+  );
 };
 
 export default page;

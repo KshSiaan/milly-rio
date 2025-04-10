@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { Howl } from "howler";
+import { Button } from "../ui/button";
 // Define types for menu items
 interface MenuItem {
   href: string;
@@ -136,7 +137,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-primary">
+      <nav className="bg-primary fixed top-0 left-0 w-full z-30">
         <div>
           <div className="w-full lg:max-w-2/3 !mx-auto h-[64px] sticky top-0 flex flex-row justify-between items-center z-50 !px-3 lg:!px-2">
             <div>
@@ -311,11 +312,10 @@ export default function Navbar() {
               <div>
                 <Switch play={songPlaying} setPlay={setSongPlaying} />
               </div>
-              {/* <Link href="/login">
-                <Button variant="gold" className="font-semibold">
-                  Log in
-                </Button>
-              </Link> */}
+
+              <Button variant="gold" className="font-semibold" asChild>
+                <Link href="/login">Log in</Link>
+              </Button>
             </div>
 
             {/* Mobile Hamburger Button */}
@@ -526,13 +526,16 @@ export default function Navbar() {
                       </ul>
                     </nav>
 
-                    <div className="flex flex-col !mt-10 gap-4">
+                    <div className="flex flex-col items-end w-full !mt-10 gap-4">
                       <Switch setPlay={setSongPlaying} play={songPlaying} />
-                      {/* <Link href="/login">
-                        <Button variant="gold" className="font-semibold !mt-3">
-                          Log in
-                        </Button>
-                      </Link> */}
+
+                      <Button
+                        variant="gold"
+                        className="font-semibold !mt-3 w-full"
+                        asChild
+                      >
+                        <Link href="/login">Log in</Link>
+                      </Button>
                     </div>
                   </div>
                 </motion.div>
