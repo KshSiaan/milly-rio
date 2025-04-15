@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { Howl } from "howler";
-import { Button } from "../ui/button";
+// import { Button } from "../ui/button";
 // Define types for menu items
 interface MenuItem {
   href: string;
@@ -118,21 +118,21 @@ export default function Navbar() {
   const exploreItems: MenuItem[] = [
     { href: "/funActivities", label: "Fun Activities" },
     { href: "/bookStory", label: "Books & Stories" },
-    { href: "#", label: "Games" },
-    { href: "/explore1", label: "Meet Milly & Rio" },
-    { href: "/explore1", label: "Educational Resources" },
-    { href: "/explore1", label: "Community & Events" },
+    { href: "/funActivities", label: "Games" },
+    { href: "/funActivities", label: "Meet Milly & Rio" },
+    { href: "/funActivities", label: "Educational Resources" },
+    { href: "/funActivities", label: "Community & Events" },
   ];
 
   const shopItems: MenuItem[] = [
-    { href: "/shop1", label: "Gift Sets" },
+    { href: "/allProducts", label: "Gift Sets" },
     { href: "/allProducts", label: "All Products" },
-    { href: "/shop1", label: "T-Shirts" },
-    { href: "/shop1", label: "Hoodies & Sweatshirts" },
-    { href: "/shop1", label: "Kids' Collection" },
-    { href: "/shop1", label: "Diabetes Awareness" },
-    { href: "/shop1", label: "Accessories" },
-    { href: "/shop1", label: "Limited Edition" },
+    { href: "/allProducts", label: "T-Shirts" },
+    { href: "/allProducts", label: "Hoodies & Sweatshirts" },
+    { href: "/allProducts", label: "Kids' Collection" },
+    { href: "/allProducts", label: "Diabetes Awareness" },
+    { href: "/allProducts", label: "Accessories" },
+    { href: "/allProducts", label: "Limited Edition" },
   ];
 
   return (
@@ -313,9 +313,9 @@ export default function Navbar() {
                 <Switch play={songPlaying} setPlay={setSongPlaying} />
               </div>
 
-              <Button variant="gold" className="font-semibold" asChild>
+              {/* <Button variant="gold" className="font-semibold" asChild>
                 <Link href="/login">Log in</Link>
-              </Button>
+              </Button> */}
             </div>
 
             {/* Mobile Hamburger Button */}
@@ -528,14 +528,14 @@ export default function Navbar() {
 
                     <div className="flex flex-col items-end w-full !mt-10 gap-4">
                       <Switch setPlay={setSongPlaying} play={songPlaying} />
-
+                      {/* 
                       <Button
                         variant="gold"
                         className="font-semibold !mt-3 w-full"
                         asChild
                       >
                         <Link href="/login">Log in</Link>
-                      </Button>
+                      </Button> */}
                     </div>
                   </div>
                 </motion.div>

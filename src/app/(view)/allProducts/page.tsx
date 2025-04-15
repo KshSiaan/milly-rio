@@ -1,10 +1,12 @@
-import React from 'react'
-import AllProductPage from './allProductPage'
+import React from "react";
+import AllProductPage from "./allProductPage";
 
 const Page = () => {
   return (
-    <div><AllProductPage/></div>
-  )
-}
+    <div>
+      <AllProductPage />
+    </div>
+  );
+};
 
-export default Page
+export default Page;
