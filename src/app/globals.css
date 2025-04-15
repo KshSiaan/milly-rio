@@ -161,3 +161,16 @@ body {
   }
 }
 
+.blogTitle {
+  font-size: 34px !important;
+  font-weight: bold;
+  padding-bottom: 24px;
+}
+.blogPara {
+  font-size: 16px !important;
+  padding-bottom: 18px;
+}
+.blogPara > ul {
+  list-style: none;
+  list-style-type: none;
+}

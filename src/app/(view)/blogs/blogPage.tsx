@@ -1,6 +1,7 @@
 "use client"; // Required for animations in Next.js App Router
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const BlogPage = () => {
@@ -58,30 +59,31 @@ const BlogPage = () => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {blogList.map((blog, index) => (
-            <motion.div
-              key={blog.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="rounded-3xl !p-4 bg-white shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-[1.03] border border-transparent hover:border-amber-500 cursor-pointer"
-            >
-              <Image
-                src={blog.img}
-                width={357}
-                height={500}
-                className="rounded-2xl object-cover w-full h-auto"
-                alt={blog.title}
-              />
-              <div className="!mt-4">
-                <h2 className="text-[#000030] font-semibold text-lg">
-                  {blog.title}
-                </h2>
-                <p className="!mt-2 text-[#6D6D6D] text-sm">
-                  {blog.description}
-                </p>
-              </div>
-            </motion.div>
+            <Link href={`/blogs/blog?page=${blog.id}`} key={blog.id}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="rounded-3xl !p-4 bg-white shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-[1.03] border border-transparent hover:border-amber-500 cursor-pointer"
+              >
+                <Image
+                  src={blog.img}
+                  width={357}
+                  height={500}
+                  className="rounded-2xl object-cover w-full h-auto"
+                  alt={blog.title}
+                />
+                <div className="!mt-4">
+                  <h2 className="text-[#000030] font-semibold text-lg">
+                    {blog.title}
+                  </h2>
+                  <p className="!mt-2 text-[#6D6D6D] text-sm">
+                    {blog.description}
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </motion.div>
       </div>

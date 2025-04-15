@@ -1,5 +1,4 @@
 "use client";
-import { PDFDocument, rgb } from "pdf-lib";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -14,6 +13,10 @@ const Page = () => {
     img: string;
   }
 
+  interface Pdf {
+    pdf: string;
+  }
+
   const images: image[] = [
     { img: "/fun/img-1.png" },
     { img: "/fun/img-2.png" },
@@ -22,28 +25,24 @@ const Page = () => {
     { img: "/fun/img-5.png" },
   ];
 
-  const generatePDF = async (index: number) => {
-    const pdfDoc = await PDFDocument.create();
-    const page = pdfDoc.addPage([600, 400]);
+  const pdfs: Pdf[] = [
+    { pdf: "/fun/1.pdf" },
+    { pdf: "/fun/2.pdf" },
+    { pdf: "/fun/3.pdf" },
+    { pdf: "/fun/4.pdf" },
+    { pdf: "/fun/5.pdf" },
+  ];
 
-    const { height } = page.getSize();
-    page.drawText(`This is PDF #${index + 1}`, {
-      x: 50,
-      y: height / 2,
-      size: 24,
-      color: rgb(0, 0.53, 0.71),
-    });
-
-    const pdfBytes = await pdfDoc.save();
-    const blob = new Blob([pdfBytes], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
+  const downloadPDF = (index: number) => {
+    const pdf = pdfs[index];
+    if (!pdf) return;
 
     const link = document.createElement("a");
-    link.href = url;
-    link.download = `pdf-${index + 1}.pdf`;
+    link.href = pdf.pdf;
+    link.download = `Milly&Rio-ColoringBook_page-${index + 1}.pdf`;
+    document.body.appendChild(link); // optional for Firefox
     link.click();
-
-    URL.revokeObjectURL(url); // cleanup
+    document.body.removeChild(link);
   };
 
   return (
@@ -214,7 +213,7 @@ const Page = () => {
                 </h1>
                 <Button
                   className="border border-[#FFC107] bg-white text-[#000030] hover:bg-white"
-                  onClick={() => generatePDF(i)}
+                  onClick={() => downloadPDF(i)}
                 >
                   <span className="mr-2">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
