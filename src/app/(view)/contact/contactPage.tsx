@@ -11,17 +11,24 @@ const ContactPage = () => {
     email: "",
     description: "",
   });
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.fullName || formData.email || formData.description) {
+      const mailtoLink = `mailto:Info@millyandrio.com?subject=New Form Submission&body=Name: ${encodeURIComponent(
+        formData.fullName
+      )}%0D%0AEmail: ${encodeURIComponent(
+        formData.email
+      )}%0D%0ADescription: ${encodeURIComponent(formData.description)}`;
+      window.location.href = mailtoLink; // Open the user's email client
+    } else {
+      alert("Please correct the form errors.");
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    alert("Form Submitted Successfully!");
   };
 
   return (
@@ -105,6 +112,7 @@ const ContactPage = () => {
               </div>
 
               {/* Submit Button */}
+
               <Button type="submit" className="w-full" variant="gold">
                 Submit
               </Button>
