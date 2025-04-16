@@ -4,10 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import PaymentForm from "./payment-form";
+import { Allproducts } from "@/lib/products";
 
-const Page = () => {
+interface productType {
+  id: number;
+  image: string;
+  name: string;
+  price: number;
+  description: string;
+}
+const Page = ({
+  params,
+}: {
+  params: Promise<{ category: string; id: string }>;
+}) => {
   const [formFilled, setFormFilled] = useState(false);
-
+  const [productData, setProductData] = useState<productType | null>(null);
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
@@ -19,22 +31,30 @@ const Page = () => {
     setFormFilled(Boolean(allFilled));
   }, [country, state, city, zip]);
 
-  interface product {
-    id: number;
-    image: string;
-    name: string;
-    price: number;
-    description: string;
-  }
+  // const singleProduct: product = {
+  //   id: 1,
+  //   image: "/product/product2.png",
+  //   name: "T-shirts for children",
+  //   price: 4820.0,
+  //   description:
+  //     "Introducing the Gizmo Pro, the ultimate gadget for tech enthusiasts! With its sleek design and cutting-edge features, this device is perfect for anyone looking to enhance their daily routine. The Gizmo Pro boasts a powerful battery life, ensuring you stay connected throughout the day. Its user-friendly interface makes navigation a breeze, while the high-resolution display brings your content to life. Whether you're streaming your favorite shows or tackling work projects, the Gizmo Pro delivers exceptional performance. Upgrade your tech game with the Gizmo Pro today!",
+  // };
 
-  const singleProduct: product = {
-    id: 1,
-    image: "/product/product2.png",
-    name: "T-shirts for children",
-    price: 4820.0,
-    description:
-      "Introducing the Gizmo Pro, the ultimate gadget for tech enthusiasts! With its sleek design and cutting-edge features, this device is perfect for anyone looking to enhance their daily routine. The Gizmo Pro boasts a powerful battery life, ensuring you stay connected throughout the day. Its user-friendly interface makes navigation a breeze, while the high-resolution display brings your content to life. Whether you're streaming your favorite shows or tackling work projects, the Gizmo Pro delivers exceptional performance. Upgrade your tech game with the Gizmo Pro today!",
-  };
+  useEffect(() => {
+    async function Logger() {
+      const { id: fixedId } = await params;
+
+      const foundProduct = Allproducts.find((x) => String(x.id) === fixedId);
+
+      if (foundProduct) {
+        setProductData(foundProduct);
+      } else {
+        setProductData(null); // or handle this case as needed
+      }
+    }
+
+    Logger();
+  }, [params]);
 
   return (
     <div className="bg-[#f5f8fc]">
@@ -78,7 +98,11 @@ const Page = () => {
           {/* left side */}
           <div className="max-w-[699px]">
             <Image
-              src={singleProduct.image}
+              src={
+                productData?.image
+                  ? productData?.image
+                  : "/product/product1.png"
+              }
               width={699}
               height={424}
               className="rounded-3xl h-[424px] object-cover"
@@ -87,18 +111,18 @@ const Page = () => {
             <div className="flex flex-col lg:flex-row justify-between items-center !mt-6">
               <div>
                 <h1 className="text-[#000030] font-semibold text-[16px]">
-                  {singleProduct.name}
+                  {productData?.name}
                 </h1>
               </div>
               <div>
                 <p className="text-[#FFC107] font-semibold text-xl">
-                  ${singleProduct.price}
+                  ${productData?.price}
                 </p>
               </div>
             </div>
             <div className="!mt-4">
               <p className="text-[#000030] text-[16px]">
-                {singleProduct.description}
+                {productData?.description}
               </p>
             </div>
           </div>

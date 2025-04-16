@@ -49,7 +49,7 @@ export default function PaymentForm({ formFilled }: { formFilled: boolean }) {
           stripe={stripePromise}
           options={{
             mode: "payment",
-            amount: 123,
+            amount: 1,
             currency: "usd",
             // secret,
           }}
