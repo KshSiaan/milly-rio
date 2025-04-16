@@ -59,15 +59,8 @@ const Allproducts: Product[] = [
   },
 ];
 
-// ✅ Typed correctly for Next.js 15 App Router
-interface PageProps {
-  params: {
-    category: string;
-  };
-}
-
-const Page = ({ params }: PageProps) => {
-  const { category } = params;
+const Page = async ({ params }: { params: Promise<{ category: string }> }) => {
+  const { category } = await params;
   let filteredProducts: Product[] = [];
 
   switch (category.toLowerCase()) {
