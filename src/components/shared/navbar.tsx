@@ -125,14 +125,14 @@ export default function Navbar() {
   ];
 
   const shopItems: MenuItem[] = [
-    { href: "/allProducts", label: "Gift Sets" },
-    { href: "/allProducts", label: "All Products" },
-    { href: "/allProducts", label: "T-Shirts" },
-    { href: "/allProducts", label: "Hoodies & Sweatshirts" },
-    { href: "/allProducts", label: "Kids' Collection" },
-    { href: "/allProducts", label: "Diabetes Awareness" },
-    { href: "/allProducts", label: "Accessories" },
-    { href: "/allProducts", label: "Limited Edition" },
+    { href: "/shop/gift", label: "Gift Sets" },
+    { href: "/shop/all", label: "All Products" },
+    { href: "/shop/tshirt", label: "T-Shirts" },
+    { href: "/shop/hoodies", label: "Hoodies & Sweatshirts" },
+    { href: "/shop/kids", label: "Kids' Collection" },
+    { href: "/shop/diabetes", label: "Diabetes Awareness" },
+    { href: "/shop/accessories", label: "Accessories" },
+    { href: "/shop/limited", label: "Limited Edition" },
   ];
 
   return (
