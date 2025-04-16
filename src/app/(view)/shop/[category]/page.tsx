@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import ShopPage from "./shop-page";
 import { Allproducts } from "@/lib/products";
 
@@ -9,7 +9,13 @@ export interface Product {
   price: number;
 }
 
-const Page = ({ params }: { params: { category: string } }) => {
+interface PageProps {
+  params: {
+    category: string;
+  };
+}
+
+const Page: FC<PageProps> = ({ params }) => {
   console.log(params.category);
   let filteredProducts: Product[] = [];
 
